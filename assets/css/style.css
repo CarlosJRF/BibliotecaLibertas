@@ -35,7 +35,7 @@ body {
     color: #7a4b2b;
 }
 
-/* Botón "Agregar al carrito" ya animado brevemente al hacer clic */
+/* Botón "Agregar al carrito" */
 .btn-agregar.agregado {
     background-color: #198754;
     border-color: #198754;

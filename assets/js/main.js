@@ -1,5 +1,5 @@
 /**
- * Biblioteca Libertas - Lógica de la tienda (catálogo + carrito)
+ * Biblioteca Libertas - Lógica de la tienda 
  */
 
 // Formateador de precios en pesos chilenos
@@ -28,7 +28,7 @@ const btnVaciarCarrito = document.getElementById("btn-vaciar-carrito");
  * Muestra un mensaje amigable si la carga falla.
  */
 function cargarProductos() {
-    fetch("data/productos.json")
+    fetch("assets/data/productos.json")
         .then((respuesta) => {
             if (!respuesta.ok) {
                 throw new Error("Respuesta de red no válida");

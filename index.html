@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca Libertas</title>
 
-    <!-- Bootstrap 5 CSS (incluido localmente en /vendor para no depender de un CDN externo) -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Bootstrap 5  -->
+    <link href="assets/dependencies/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
 <body>
@@ -70,7 +70,7 @@
         </div>
     </nav>
 
-    <!-- ===== Carrito (offcanvas lateral) ===== -->
+    <!-- ===== Carrito ===== -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasCarritoLabel">Tu carrito</h5>
@@ -89,7 +89,7 @@
         </div>
     </div>
 
-    <!-- ===== Encabezado / Hero ===== -->
+    <!-- ===== Encabezado ===== -->
     <header id="inicio" class="bg-secondary bg-opacity-25 text-center py-5">
         <div class="container">
             <h1 class="display-5 fw-bold">Bienvenidos a tu librería virtual de confianza</h1>
@@ -106,7 +106,7 @@
             Cargando productos...
         </div>
 
-        <!-- Aquí se insertan dinámicamente las tarjetas de producto (Fetch API) -->
+        <!-- Fetch API -->
         <div id="contenedor-productos" class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4"></div>
     </main>
 
@@ -129,8 +129,8 @@
         </div>
     </footer>
 
-    <!-- Bootstrap 5 JS (incluye Popper, necesario para dropdown y offcanvas) -->
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
+    <!-- Bootstrap 5 JS -->
+    <script src="/assets/dependencies/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/main.js"></script>
 </body>
 </html>
