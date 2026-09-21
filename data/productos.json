@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "nombre": "Cien años de soledad",
+    "autor": "Gabriel García Márquez",
+    "precio": 12990,
+    "categoria": "Ficción y Fantasía",
+    "imagen": "assets/imagenes/CienAnosDeSoledad.svg",
+    "descripcion": "La obra maestra del realismo mágico que te sumergirá en Macondo."
+  },
+  {
+    "id": 2,
+    "nombre": "Dune",
+    "autor": "Frank Herbert",
+    "precio": 14990,
+    "categoria": "Ficción y Fantasía",
+    "imagen": "assets/imagenes/Dune.svg",
+    "descripcion": "La épica saga de ciencia ficción que redefinió el género."
+  },
+  {
+    "id": 3,
+    "nombre": "El Código Da Vinci",
+    "autor": "Dan Brown",
+    "precio": 9990,
+    "categoria": "Ficción y Fantasía",
+    "imagen": "assets/imagenes/ElCodigoDaVinci.svg",
+    "descripcion": "Un thriller de misterio y conspiraciones que te atrapará."
+  },
+  {
+    "id": 4,
+    "nombre": "Hábitos Atómicos",
+    "autor": "James Clear",
+    "precio": 11990,
+    "categoria": "Desarrollo Personal",
+    "imagen": "assets/imagenes/HabitosAtomicos.svg",
+    "descripcion": "Un método sencillo y comprobado para construir buenos hábitos."
+  },
+  {
+    "id": 5,
+    "nombre": "Breve historia del tiempo",
+    "autor": "Stephen Hawking",
+    "precio": 13990,
+    "categoria": "Ciencia y Tecnología",
+    "imagen": "assets/imagenes/BreveHistoriaDelTiempo.svg",
+    "descripcion": "Un recorrido fascinante por el origen y destino del universo."
+  },
+  {
+    "id": 6,
+    "nombre": "Sapiens",
+    "autor": "Yuval Noah Harari",
+    "precio": 15990,
+    "categoria": "Historia",
+    "imagen": "assets/imagenes/Sapiens.svg",
+    "descripcion": "De animales a dioses: una breve historia de la humanidad."
+  }
+]

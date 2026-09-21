@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="250" height="120" viewBox="0 0 250 120">
+  <rect width="250" height="120" fill="#1f2937" rx="10"/>
+  <text x="125" y="55" font-family="Georgia, serif" font-size="24" fill="#f4c542" text-anchor="middle" font-weight="bold">Biblioteca</text>
+  <text x="125" y="85" font-family="Georgia, serif" font-size="24" fill="#f4c542" text-anchor="middle" font-weight="bold">Libertas</text>
+</svg>

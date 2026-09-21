@@ -3,92 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca libertas</title>
+    <title>Biblioteca Libertas</title>
+
+    <!-- Bootstrap 5 CSS (incluido localmente en /vendor para no depender de un CDN externo) -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <header>
-        <img src="assets/imagenes/BookStoreLogo.jpeg" alt="Logotipo oficial del proyecto BookStoreWeb" width="250">
-        
-        <div class="header-content">
-            <h1>Biblioteca libertas</h1>
-            <p>Bienvenidos a tu librería virtual de confianza.</p>
-            <p>Descubre nuevos mundos, aprende y comparte tu pasión por la lectura.</p>
-        </div>
 
-        <nav>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Catálogo</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-            
-            <div class="user-actions">
-                <button class="btn">Iniciar sesión</button>
+    <!-- ===== Barra de navegación ===== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
+                <img src="assets/imagenes/BookStoreLogo.svg" alt="Logotipo de Biblioteca Libertas" width="48" height="24">
+                Biblioteca Libertas
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrincipal"
+                aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Abrir menú de navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarPrincipal">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="categoriasDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Categorías
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="categoriasDropdown">
+                            <li><a class="dropdown-item" href="#">Ficción y Fantasía</a></li>
+                            <li><a class="dropdown-item" href="#">Ciencia y Tecnología</a></li>
+                            <li><a class="dropdown-item" href="#">Desarrollo Personal</a></li>
+                            <li><a class="dropdown-item" href="#">Historia</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#catalogo">Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+
+                <!-- Formulario de búsqueda: evento submit -->
+                <form id="form-busqueda" class="d-flex me-2" role="search">
+                    <input id="input-busqueda" class="form-control me-2" type="search"
+                        placeholder="Buscar un libro..." aria-label="Buscar">
+                    <button class="btn btn-outline-light" type="submit">Buscar</button>
+                </form>
+
+                <!-- Botón del carrito -->
+                <button id="btn-carrito" class="btn btn-warning position-relative" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+                    🛒 Carrito
+                    <span id="contador-carrito"
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        0
+                    </span>
+                </button>
             </div>
-        </nav>
+        </div>
+    </nav>
+
+    <!-- ===== Carrito (offcanvas lateral) ===== -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasCarritoLabel">Tu carrito</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column">
+            <ul id="lista-carrito" class="list-group mb-3">
+                <li class="list-group-item text-muted">El carrito está vacío.</li>
+            </ul>
+            <div class="mt-auto">
+                <p class="fs-5">Total: <strong id="total-carrito">$0</strong></p>
+                <button id="btn-vaciar-carrito" class="btn btn-outline-danger w-100" type="button">
+                    Vaciar carrito
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Encabezado / Hero ===== -->
+    <header id="inicio" class="bg-secondary bg-opacity-25 text-center py-5">
+        <div class="container">
+            <h1 class="display-5 fw-bold">Bienvenidos a tu librería virtual de confianza</h1>
+            <p class="lead">Descubre nuevos mundos, aprende y comparte tu pasión por la lectura.</p>
+        </div>
     </header>
 
-    <main class="categorias">
-        <aside class="sidebar">
-            <h2>Catálogo Literario</h2>
-            <h3>Categorías</h3>
-            <ul class="lista-categorias">
-                <li><a href="#">Ficción y Fantasía</a></li>
-                <li><a href="#">Ciencia y Tecnología</a></li>
-                <li><a href="#">Desarrollo Personal</a></li>
-                <li><a href="#">Historia</a></li>
-            </ul>
-        </aside>
-        
-        <section id="destacados">
-            <h2>Libros Destacados</h2>
-            <ul class="grid-libros">
-                <li>
-                    <img src="assets/imagenes/CienAnosDeSoledad.jpeg" alt="Portada del libro Cien años de soledad">
-                    <h3>Cien años de soledad</h3>
-                    <p>La obra maestra de Gabriel García Márquez que te sumergirá en el realismo mágico de Macondo.</p>
-                </li>
-                <li>
-                    <img src="assets/imagenes/HabitosAtomicos.jpeg" alt="Portada del libro Hábitos Atómicos">
-                    <h3>Hábitos Atómicos</h3>
-                    <p>Un método sencillo y comprobado para desarrollar buenos hábitos y eliminar los malos.</p>
-                </li>
-            </ul>
-        </section>
-        
-        <section id="nuevos-lanzamientos">
-            <h2>Novedades Literarias</h2>
-            <ul class="grid-libros">
-                <li>
-                    <img src="assets/imagenes/Dune.jpeg" alt="Portada del libro de ciencia ficción Dune">
-                    <h3>Dune</h3>
-                    <p>Descubre la épica saga de ciencia ficción que redefinió el género. Una aventura en el planeta desierto de Arrakis.</p>
-                </li>
-                <li>
-                    <img src="assets/imagenes/ElCodigoDaVinci.jpeg" alt="Portada del libro El Código Da Vinci">
-                    <h3>El Código Da Vinci</h3>
-                    <p>Un thriller de misterio y conspiraciones que te mantendrá atrapado desde la primera hasta la última página.</p>
-                </li>
-            </ul>
-        </section>
+    <!-- ===== Catálogo de productos ===== -->
+    <main class="container my-5" id="catalogo">
+        <h2 class="mb-4">Catálogo Literario</h2>
+
+        <!-- Mensaje de estado: cargando / error -->
+        <div id="mensaje-estado" class="text-center text-muted my-4">
+            Cargando productos...
+        </div>
+
+        <!-- Aquí se insertan dinámicamente las tarjetas de producto (Fetch API) -->
+        <div id="contenedor-productos" class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4"></div>
     </main>
 
-    <footer>
-        <div class="contact-info">
-            <p><strong>Dirección:</strong> Av. de los Letrados 456, Región Metropolitana</p>
-            <p><strong>Email:</strong> contacto@bookstoreweb.cl</p>
-        </div>
-        
-        <div class="social-media">
-            <p>Síguenos en nuestras redes:</p>
-            <ul>
-                <li><a href="#">Instagram</a></li>
-                <li><a href="#">Facebook</a></li>
-                <li><a href="#">X (Twitter)</a></li>
-            </ul>
+    <!-- ===== Pie de página ===== -->
+    <footer id="contacto" class="bg-dark text-light py-4 mt-5">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+            <div class="contact-info text-center text-md-start">
+                <p class="mb-1"><strong>Dirección:</strong> Av. de los Letrados 456, Región Metropolitana</p>
+                <p class="mb-0"><strong>Email:</strong> contacto@bookstoreweb.cl</p>
+            </div>
+
+            <div class="social-media text-center text-md-end">
+                <p class="mb-1">Síguenos en nuestras redes:</p>
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item"><a class="text-light" href="#">Instagram</a></li>
+                    <li class="list-inline-item"><a class="text-light" href="#">Facebook</a></li>
+                    <li class="list-inline-item"><a class="text-light" href="#">X (Twitter)</a></li>
+                </ul>
+            </div>
         </div>
     </footer>
+
+    <!-- Bootstrap 5 JS (incluye Popper, necesario para dropdown y offcanvas) -->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

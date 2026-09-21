@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="280" viewBox="0 0 200 280">
+  <rect width="200" height="280" fill="#7a4b2b"/>
+  <rect x="10" y="10" width="180" height="260" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+  <text x="100" y="130" font-family="Georgia, serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="bold"><tspan x="100" dy="0">Cien años de</tspan><tspan x="100" dy="24">soledad</tspan></text>
+  <text x="100" y="255" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" opacity="0.8">Biblioteca Libertas</text>
+</svg>
