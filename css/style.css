@@ -1,0 +1,42 @@
+/* Estilos propios de Biblioteca Libertas, complementarios a Bootstrap 5 */
+
+:root {
+    --bl-color-acento: #f4c542;
+}
+
+body {
+    background-color: #fdfaf5;
+}
+
+.navbar-brand img {
+    border-radius: 4px;
+}
+
+/* Tarjetas de producto */
+.tarjeta-producto {
+    height: 100%;
+    transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.tarjeta-producto:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.tarjeta-producto img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+.tarjeta-producto .precio {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #7a4b2b;
+}
+
+/* Botón "Agregar al carrito" ya animado brevemente al hacer clic */
+.btn-agregar.agregado {
+    background-color: #198754;
+    border-color: #198754;
+}
