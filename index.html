@@ -12,103 +12,8 @@
 
 <body>
 
-    <!-- ===== Barra de navegación ===== -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
-                <img src="assets/imagenes/BookStoreLogo.svg" alt="Logotipo de Biblioteca Libertas" width="48" height="24">
-                Biblioteca Libertas
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrincipal"
-                aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Abrir menú de navegación">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarPrincipal">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#inicio">Inicio</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="categoriasDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Categorías
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="categoriasDropdown">
-                            <li><a class="dropdown-item" href="#">Ficción y Fantasía</a></li>
-                            <li><a class="dropdown-item" href="#">Ciencia y Tecnología</a></li>
-                            <li><a class="dropdown-item" href="#">Desarrollo Personal</a></li>
-                            <li><a class="dropdown-item" href="#">Historia</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#catalogo">Catálogo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contacto">Contacto</a>
-                    </li>
-                </ul>
-
-                <!-- Formulario de búsqueda: evento submit -->
-                <form id="form-busqueda" class="d-flex me-2" role="search">
-                    <input id="input-busqueda" class="form-control me-2" type="search"
-                        placeholder="Buscar un libro..." aria-label="Buscar">
-                    <button class="btn btn-outline-light" type="submit">Buscar</button>
-                </form>
-
-                <!-- Botón del carrito -->
-                <button id="btn-carrito" class="btn btn-warning position-relative" type="button"
-                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
-                    🛒 Carrito
-                    <span id="contador-carrito"
-                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        0
-                    </span>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- ===== Carrito (offcanvas lateral) ===== -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasCarritoLabel">Tu carrito</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
-        </div>
-        <div class="offcanvas-body d-flex flex-column">
-            <ul id="lista-carrito" class="list-group mb-3">
-                <li class="list-group-item text-muted">El carrito está vacío.</li>
-            </ul>
-            <div class="mt-auto">
-                <p class="fs-5">Total: <strong id="total-carrito">$0</strong></p>
-                <button id="btn-vaciar-carrito" class="btn btn-outline-danger w-100" type="button">
-                    Vaciar carrito
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== Encabezado / Hero ===== -->
-    <header id="inicio" class="bg-secondary bg-opacity-25 text-center py-5">
-        <div class="container">
-            <h1 class="display-5 fw-bold">Bienvenidos a tu librería virtual de confianza</h1>
-            <p class="lead">Descubre nuevos mundos, aprende y comparte tu pasión por la lectura.</p>
-        </div>
-    </header>
-
-    <!-- ===== Catálogo de productos ===== -->
-    <main class="container my-5" id="catalogo">
-        <h2 class="mb-4">Catálogo Literario</h2>
-
-        <!-- Mensaje de estado: cargando / error -->
-        <div id="mensaje-estado" class="text-center text-muted my-4">
-            Cargando productos...
-        </div>
-
-        <!-- Aquí se insertan dinámicamente las tarjetas de producto (Fetch API) -->
-        <div id="contenedor-productos" class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4"></div>
-    </main>
+    <!-- ===== Aplicación React: navegación, carrito, encabezado y catálogo ===== -->
+    <div id="root"></div>
 
     <!-- ===== Pie de página ===== -->
     <footer id="contacto" class="bg-dark text-light py-4 mt-5">
@@ -131,6 +36,18 @@
 
     <!-- Bootstrap 5 JS (incluye Popper, necesario para dropdown y offcanvas) -->
     <script src="assets/dependencies/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/main.js"></script>
+
+    <!-- React 18 + Babel standalone (incluidos localmente: transforman JSX en el navegador, sin paso de build) -->
+    <script src="assets/dependencies/react/react.development.js"></script>
+    <script src="assets/dependencies/react/react-dom.development.js"></script>
+    <script src="assets/dependencies/react/babel.min.js"></script>
+
+    <!-- Componentes de la aplicación (el orden importa: App.jsx va al final porque monta la app) -->
+    <script type="text/babel" src="assets/js/components/utilidades.jsx"></script>
+    <script type="text/babel" src="assets/js/components/TarjetaProducto.jsx"></script>
+    <script type="text/babel" src="assets/js/components/ListaProductos.jsx"></script>
+    <script type="text/babel" src="assets/js/components/Carrito.jsx"></script>
+    <script type="text/babel" src="assets/js/components/BarraNavegacion.jsx"></script>
+    <script type="text/babel" src="assets/js/components/App.jsx"></script>
 </body>
 </html>
