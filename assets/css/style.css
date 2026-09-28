@@ -35,8 +35,6 @@ body {
     color: #7a4b2b;
 }
 
-/* Botón "Agregar al carrito" ya animado brevemente al hacer clic */
-.btn-agregar.agregado {
-    background-color: #198754;
-    border-color: #198754;
+.tarjeta-producto .precio-normal {
+    font-size: 0.95rem;
 }

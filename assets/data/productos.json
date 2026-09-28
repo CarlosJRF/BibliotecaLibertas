@@ -4,6 +4,7 @@
     "nombre": "Cien años de soledad",
     "autor": "Gabriel García Márquez",
     "precio": 12990,
+    "precioOferta": 9990,
     "categoria": "Ficción y Fantasía",
     "imagen": "assets/imagenes/CienAnosDeSoledad.svg",
     "descripcion": "La obra maestra del realismo mágico que te sumergirá en Macondo."
@@ -13,6 +14,7 @@
     "nombre": "Dune",
     "autor": "Frank Herbert",
     "precio": 14990,
+    "precioOferta": 12990,
     "categoria": "Ficción y Fantasía",
     "imagen": "assets/imagenes/Dune.svg",
     "descripcion": "La épica saga de ciencia ficción que redefinió el género."
@@ -22,6 +24,7 @@
     "nombre": "El Código Da Vinci",
     "autor": "Dan Brown",
     "precio": 9990,
+    "precioOferta": 7990,
     "categoria": "Ficción y Fantasía",
     "imagen": "assets/imagenes/ElCodigoDaVinci.svg",
     "descripcion": "Un thriller de misterio y conspiraciones que te atrapará."
@@ -31,6 +34,7 @@
     "nombre": "Hábitos Atómicos",
     "autor": "James Clear",
     "precio": 11990,
+    "precioOferta": 8990,
     "categoria": "Desarrollo Personal",
     "imagen": "assets/imagenes/HabitosAtomicos.svg",
     "descripcion": "Un método sencillo y comprobado para construir buenos hábitos."
@@ -40,6 +44,7 @@
     "nombre": "Breve historia del tiempo",
     "autor": "Stephen Hawking",
     "precio": 13990,
+    "precioOferta": 10990,
     "categoria": "Ciencia y Tecnología",
     "imagen": "assets/imagenes/BreveHistoriaDelTiempo.svg",
     "descripcion": "Un recorrido fascinante por el origen y destino del universo."
@@ -49,6 +54,7 @@
     "nombre": "Sapiens",
     "autor": "Yuval Noah Harari",
     "precio": 15990,
+    "precioOferta": 13490,
     "categoria": "Historia",
     "imagen": "assets/imagenes/Sapiens.svg",
     "descripcion": "De animales a dioses: una breve historia de la humanidad."
