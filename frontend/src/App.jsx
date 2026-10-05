@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import BarraNavegacion from "./components/BarraNavegacion.jsx";
 import Carrito from "./components/Carrito.jsx";
 import ListaProductos from "./components/ListaProductos.jsx";
+import Notificaciones from "./components/Notificaciones.jsx";
 
 // En local consulta la API Express; en GitHub Pages se define VITE_URL_API al compilar
 const URL_API_PRODUCTOS = import.meta.env.VITE_URL_API ?? "http://localhost:3000/api/productos";
@@ -20,6 +21,9 @@ export default function App() {
     const [carrito, setCarrito] = useState([]);
     // Evita guardar el carrito vacío inicial antes de haber leído localStorage
     const [carritoRestaurado, setCarritoRestaurado] = useState(false);
+    // Avisos (Toast) visibles: { id, titulo, mensaje, tipo }
+    const [notificaciones, setNotificaciones] = useState([]);
+    const siguienteIdNotificacion = useRef(1);
 
     // ===== Catálogo (API) =====
 
@@ -72,10 +76,29 @@ export default function App() {
         }
     }, [carrito, carritoRestaurado]);
 
+    // ===== Notificaciones =====
+
+    function notificar(titulo, mensaje, tipo) {
+        const id = siguienteIdNotificacion.current++;
+        setNotificaciones((actuales) => [...actuales, { id, titulo, mensaje, tipo }]);
+    }
+
+    // Estable entre renders para no reiniciar el temporizador de cada Toast
+    const cerrarNotificacion = useCallback((id) => {
+        setNotificaciones((actuales) => actuales.filter((n) => n.id !== id));
+    }, []);
+
+    function avisarEliminado(nombre) {
+        notificar("Producto eliminado con éxito", `«${nombre}» se quitó del carrito.`, "info");
+    }
+
     // ===== Acciones del carrito =====
 
     // Suma una unidad; si el producto no estaba, lo agrega con el precio de oferta
     function agregarAlCarrito(producto) {
+        if (!carrito.some((item) => item.id === producto.id)) {
+            notificar("Producto agregado con éxito", `«${producto.nombre}» está en tu carrito.`, "exito");
+        }
         setCarrito((actual) => {
             const existente = actual.find((item) => item.id === producto.id);
             if (existente) {
@@ -97,6 +120,10 @@ export default function App() {
 
     // Resta una unidad; si llega a cero, el producto sale del carrito
     function restarDelCarrito(id) {
+        const item = carrito.find((i) => i.id === id);
+        if (item?.cantidad === 1) {
+            avisarEliminado(item.nombre);
+        }
         setCarrito((actual) =>
             actual
                 .map((item) => (item.id === id ? { ...item, cantidad: item.cantidad - 1 } : item))
@@ -105,10 +132,15 @@ export default function App() {
     }
 
     function eliminarDelCarrito(id) {
+        const item = carrito.find((i) => i.id === id);
+        if (item) {
+            avisarEliminado(item.nombre);
+        }
         setCarrito((actual) => actual.filter((item) => item.id !== id));
     }
 
     function vaciarCarrito() {
+        notificar("Carrito vaciado", "Se quitaron todos los productos del carrito.", "info");
         setCarrito([]);
     }
 
@@ -156,6 +188,8 @@ export default function App() {
                     onReintentar={cargarProductos}
                 />
             </main>
+
+            <Notificaciones notificaciones={notificaciones} onCerrar={cerrarNotificacion} />
         </>
     );
 }
