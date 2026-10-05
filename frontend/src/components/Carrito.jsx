@@ -1,5 +1,11 @@
+import { formateadorPrecio } from "./utilidades.jsx";
+
 /**
  * Una línea del carrito con controles para sumar, restar o quitar el producto.
+ *
+ * Props:
+ * - item: { id, nombre, precio, cantidad }
+ * - onAgregar(item), onRestar(id), onEliminar(id): acciones sobre el carrito
  */
 function ItemCarrito({ item, onAgregar, onRestar, onEliminar }) {
     return (
@@ -35,8 +41,13 @@ function ItemCarrito({ item, onAgregar, onRestar, onEliminar }) {
 
 /**
  * Panel lateral (offcanvas de Bootstrap) con el contenido del carrito y su total.
+ *
+ * Props:
+ * - carrito: items del carrito
+ * - total: suma de precio x cantidad de todos los items
+ * - onAgregar, onRestar, onEliminar, onVaciar: acciones sobre el carrito
  */
-function Carrito({ carrito, total, onAgregar, onRestar, onEliminar, onVaciar }) {
+export default function Carrito({ carrito, total, onAgregar, onRestar, onEliminar, onVaciar }) {
     const estaVacio = carrito.length === 0;
 
     return (
@@ -48,7 +59,7 @@ function Carrito({ carrito, total, onAgregar, onRestar, onEliminar, onVaciar }) 
 
             <div className="offcanvas-body d-flex flex-column">
                 {estaVacio ? (
-                    <p className="text-muted">El carrito está vacío.</p>
+                    <p className="text-muted">Tu carrito está vacío por ahora.</p>
                 ) : (
                     <ul className="list-group mb-3">
                         {carrito.map((item) => (

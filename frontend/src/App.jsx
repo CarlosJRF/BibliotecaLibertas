@@ -1,31 +1,75 @@
+import { useState, useEffect } from "react";
+import BarraNavegacion from "./components/BarraNavegacion.jsx";
+import Carrito from "./components/Carrito.jsx";
+import ListaProductos from "./components/ListaProductos.jsx";
+
+const URL_API_PRODUCTOS = "http://localhost:3000/api/productos";
+const CLAVE_CARRITO = "bibliotecaLibertas.carrito";
+
 /**
  * Componente raíz: mantiene el estado del catálogo, la búsqueda y el carrito,
- * y lo reparte a los componentes hijos mediante props.
+ * y lo reparte a los componentes hijos mediante props. No recibe props.
  */
-function App() {
-    const [productos, setProductos] = React.useState([]);
-    const [cargando, setCargando] = React.useState(true);
-    const [error, setError] = React.useState(false);
-    const [busqueda, setBusqueda] = React.useState("");
+export default function App() {
+    const [productos, setProductos] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [busqueda, setBusqueda] = useState("");
     // Items del carrito: { id, nombre, precio, cantidad }
-    const [carrito, setCarrito] = React.useState([]);
+    const [carrito, setCarrito] = useState([]);
+    // Evita guardar el carrito vacío inicial antes de haber leído localStorage
+    const [carritoRestaurado, setCarritoRestaurado] = useState(false);
 
-    // Carga del catálogo desde el JSON local (una sola vez, al montar)
-    React.useEffect(() => {
-        fetch("assets/data/productos.json")
+    // ===== Catálogo (API) =====
+
+    function cargarProductos() {
+        setLoading(true);
+        setError(null);
+
+        fetch(URL_API_PRODUCTOS)
             .then((respuesta) => {
                 if (!respuesta.ok) {
-                    throw new Error("Respuesta de red no válida");
+                    throw new Error(`Respuesta HTTP ${respuesta.status}`);
                 }
                 return respuesta.json();
             })
             .then((datos) => setProductos(datos))
             .catch((err) => {
                 console.error("Error al cargar el catálogo:", err);
-                setError(true);
+                setError("No pudimos cargar el catálogo de libros. Revisa tu conexión e inténtalo de nuevo.");
             })
-            .finally(() => setCargando(false));
+            .finally(() => setLoading(false));
+    }
+
+    // Consulta el catálogo una sola vez, al montar
+    useEffect(() => {
+        cargarProductos();
     }, []);
+
+    // ===== Persistencia del carrito =====
+
+    // Al montar: recupera el carrito guardado (si existe)
+    useEffect(() => {
+        try {
+            const guardado = localStorage.getItem(CLAVE_CARRITO);
+            if (guardado) {
+                setCarrito(JSON.parse(guardado));
+            }
+        } catch (err) {
+            console.error("No se pudo leer el carrito guardado:", err);
+        }
+        setCarritoRestaurado(true);
+    }, []);
+
+    // Cada vez que cambia el carrito: lo guarda para sobrevivir a recargas
+    useEffect(() => {
+        if (!carritoRestaurado) return;
+        try {
+            localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
+        } catch (err) {
+            console.error("No se pudo guardar el carrito:", err);
+        }
+    }, [carrito, carritoRestaurado]);
 
     // ===== Acciones del carrito =====
 
@@ -104,15 +148,13 @@ function App() {
                 <h2 className="mb-4">Catálogo Literario</h2>
                 <ListaProductos
                     productos={productosFiltrados}
-                    cargando={cargando}
+                    loading={loading}
                     error={error}
                     carrito={carrito}
                     onAgregar={agregarAlCarrito}
+                    onReintentar={cargarProductos}
                 />
             </main>
         </>
     );
 }
-
-// Punto de entrada: monta la aplicación React en el contenedor #root
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);

@@ -1,9 +1,16 @@
+import { useState } from "react";
+import logo from "../assets/imagenes/BookStoreLogo.svg";
+
 /**
  * Barra de navegación con buscador y botón del carrito con contador de productos.
+ *
+ * Props:
+ * - cantidadCarrito: número total de unidades en el carrito (insignia)
+ * - onBuscar(texto): aplica el texto de búsqueda al catálogo
  */
-function BarraNavegacion({ cantidadCarrito, onBuscar }) {
+export default function BarraNavegacion({ cantidadCarrito, onBuscar }) {
     // Estado controlado del campo de búsqueda
-    const [textoBusqueda, setTextoBusqueda] = React.useState("");
+    const [textoBusqueda, setTextoBusqueda] = useState("");
 
     function manejarSubmit(evento) {
         evento.preventDefault();
@@ -14,7 +21,7 @@ function BarraNavegacion({ cantidadCarrito, onBuscar }) {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <div className="container-fluid">
                 <a className="navbar-brand d-flex align-items-center gap-2" href="#inicio">
-                    <img src="assets/imagenes/BookStoreLogo.svg" alt="Logotipo de Biblioteca Libertas" width="48" height="24" />
+                    <img src={logo} alt="Logotipo de Biblioteca Libertas" width="48" height="24" />
                     Biblioteca Libertas
                 </a>
 
