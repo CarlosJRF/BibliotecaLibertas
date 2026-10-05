@@ -3,7 +3,8 @@ import BarraNavegacion from "./components/BarraNavegacion.jsx";
 import Carrito from "./components/Carrito.jsx";
 import ListaProductos from "./components/ListaProductos.jsx";
 
-const URL_API_PRODUCTOS = "http://localhost:3000/api/productos";
+// En local consulta la API Express; en GitHub Pages se define VITE_URL_API al compilar
+const URL_API_PRODUCTOS = import.meta.env.VITE_URL_API ?? "http://localhost:3000/api/productos";
 const CLAVE_CARRITO = "bibliotecaLibertas.carrito";
 
 /**
